@@ -31,8 +31,8 @@ const store = new MongoDBStore({
 });
 const csrfProtection = csrf(); // ป้องกันการโจมตีแบบสร้างเว็บปลอมขึ้นมาเพื่อหลอก user ให้กรอกข้อมูลใน form, ตัวนี่จะช่วยป้องกันโดยการแนบ token เฉพาะมากับ form ทุกคร้ังที่ติดต่อ back-end
 
-const privateKey = fs.readFileSync('server.key'); // Block code below until read file success
-const certificate = fs.readFileSync('server.cert');
+// const privateKey = fs.readFileSync('server.key'); // Block code below until read file success
+// const certificate = fs.readFileSync('server.cert');
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -128,16 +128,14 @@ app.use((error, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    https
-      .createServer({ key: privateKey, cert: certificate }, app)
-      .listen(PORT)
+    // https
+    //   .createServer({ key: privateKey, cert: certificate }, app)
+    //   .listen(PORT)
 
-    // app.listen(PORT);
+    app.listen(process.env.PORT || 3000);
   })
   .catch(err => {
     console.log(err);

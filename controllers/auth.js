@@ -18,8 +18,8 @@ const User = require('../models/user');
 const transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
-    user: 'panyafuang@hotmail.com',
-    pass: 'Log(Hm@2020#)'
+    user: EMAIL_USER,
+    pass: EMAIL_PASSWORD
   }
 })
 
